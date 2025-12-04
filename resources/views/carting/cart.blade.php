@@ -16,10 +16,10 @@
             
             <div class="row">
                 <div class="small-12 columns">
-                  <ul class="breadcrumbs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li class="disabled">Gene Splicing</li>
+                   <ul class="breadcrumbs">
+                        <li><a href="{{route('shop')}}">Home</a></li>
+                        <li><a href="{{route('listshop')}}">Features</a></li>
+                        {{-- <li class="disabled">Gene Splicing</li> --}}
                         <li>
                           <span class="show-for-sr">Current: </span> Cloning
                         </li>
@@ -33,10 +33,10 @@
                 	
                     <div class="featured-area small-module">
                         <div class="section-title">
-                            <h2 class="float-left">Seller: <a href="#">Fajar Accessories</a></h2> <a href="#" class="float-left">Contact Seller</a>
+                            <h2 class="float-left">Seller: <a href="#">KAFINIX VENTURES</a></h2> <a href="#" class="float-left">Contact Seller</a>
                             <div class="clearfix"></div>
                         </div><!-- section title /-->
-                                
+                               @include('includes.messages') 
                         <div class="content-section new-items-wrap">
                         	<div class="medium-8 small-12 columns responsive-table">
 								<table class="shop_table cart responsive">
@@ -44,90 +44,62 @@
                                     <tr>
                                         <th class="product-name" colspan="3">Product</th>
                                         <th class="product-price">Price</th>
-                                        <th class="product-notes">Your Comments</th>
+                                        {{-- <th class="product-notes">Your Comments</th> --}}
                                         <th class="product-quantity">Quantity</th>
                                         <th class="product-subtotal">Total</th>
                                     </tr>
                                 </thead>
                             
     	                        <tbody>
+                                    @foreach($cart as $productId => $item)
                                 <tr class="cart-item">
-                        
+                                        
                                         <td class="product-remove">
-                                            <a href="#" class="remove" title="Remove this item"><span class="fa fa-close"></span></a>				
+                                            <a href="{{route('cart.remove',$productId)}}" class="remove" title="Remove this item"><span class="fa fa-close"></span></a>				
                                          </td>
-                    
+            
                                         <td class="product-thumbnail">
-                                            <a href="#"><img width="114" height="130" src="{{asset('assets/images/help/product2-1.jpg')}}" alt=""></a>					
+                                            <a href="#">@if ($item['image'])
+                                                <img src="{{ asset('storage/' . $item['image']) }}" 
+                                                    width="120" 
+                                                    height="120"
+                                                    style="object-fit: cover;"
+                                                    alt="">
+                                            @else
+                                                <p>no image</p>
+                                            @endif
+                                        </a>					
                                         </td>
                     
                                         <td class="product-name">
-                                            <a href="#">New Dog Cage Five Petals Flowers Opal Stud</a>												
+                                            <a href="#">{{$item['name'] }}</a>												
                                                 <div class="">
-                                                    <span class="amount">$&nbsp;140.00</span>
+                                                    <span class="amount">£&nbsp;{{$item['price'] }}</span>
                                                  </div>
-                                             <div class="product-detail">
-                                             	Color: Green
-                                             </div>    
+                                             {{-- <div class="product-detail">
+                                             	Color: {{$item['color'] }}
+                                             </div>     --}}
                                         </td>
                     
                                         <td class="product-price">
-                                            <span class="amount">$&nbsp;140.00</span>
+                                            <span class="amount">£&nbsp;{{$item['price'] }}</span>
                                         </td>
                                         
-                                        <td class="product-comment">
+                                        {{-- <td class="product-comment">
                                         	<textarea placeholder="Optional Note"></textarea>
-                                        </td>
+                                        </td> --}}
                     
                                         <td class="product-quantity">
                                             <div class="quantity buttons_added">
-                                                <input type="number" value="1" title="Qty" class="input-text qty text" size="4">
+                                                <input type="number" value="{{$item['quantity']}}" title="Qty" class="input-text qty text" size="4">
                                                 </div>
                                         </td>
                     
                                         <td class="product-subtotal">
-                                            <span class="amount">$&nbsp;140.00</span>					
+                                            <span class="amount">£&nbsp;{{ number_format($item['quantity'] * $item['price'], 2) }} </span>					
                                         </td>
                                     </tr>
-                                    
-                                 <tr class="cart-item">
-                        
-                                        <td class="product-remove">
-                                            <a href="#" class="remove" title="Remove this item"><span class="fa fa-close"></span></a>				
-                                         </td>
-                    
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img width="114" height="130" src="{{asset('assets/images/help/product3-1.jpg')}}" alt=""></a>					
-                                        </td>
-                    
-                                        <td class="product-name">
-                                            <a href="single-product.html">Five Start Good mattle band for Cat</a>												
-                                                <div class="">
-                                                    <span class="amount">$&nbsp;140.00</span>
-                                                 </div>
-                                                 <div class="product-detail">
-                                             		Color: Green
-                                             	</div>
-                                        </td>
-                    
-                                        <td class="product-price">
-                                            <span class="amount">$&nbsp;140.00</span>
-                                        </td>
-                                        
-                                        <td class="product-comment">
-                                        	<textarea placeholder="Optional Note"></textarea>
-                                        </td>
-                    
-                                        <td class="product-quantity">
-                                            <div class="quantity buttons_added">
-                                                <input type="number" value="1" title="Qty" class="input-text qty text" size="4">
-                                                </div>
-                                        </td>
-                    
-                                        <td class="product-subtotal">
-                                            <span class="amount">$&nbsp;140.00</span>					
-                                        </td>
-                                    </tr>   
+                                   @endforeach  
                             </tbody>
                         
 	                        </table>
@@ -136,26 +108,36 @@
                             <div class="medium-4 small-12 columns">
                             	<div class="total-container">
                                 	<table>
-                                    	<tr>
+                                    	{{-- <tr>
                                             <th>Subtotal</th>
                                             <td>235$</td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>    
-                                        	<th>Shipping</th>
-                                            <td>5$ (FLAT)</td>
+                                        	{{-- <th>Shipping</th>
+                                            <td>5$ (FLAT)</td> --}}
                                         </tr>
                                         <tr>	
-                                            <th>Coupon Discount</th>
-                                            <td>5% - 22$</td>
+                                            {{-- <th>Coupon Discount</th>
+                                            <td>5% - 22$</td> --}}
                                         </tr>
                                         <tr>    
-                                            <th>Grand Total</th>
-                                            <td>500$</td>
-                                        </tr>
-                                    </table>
+                                            <th>Sub Total</th>
+                                            @php $grandTotal = 0; @endphp
+                                            @foreach ($cart as $item)
+                                            @php
+                                                 $total = $item['quantity'] * $item['price'];
+                                                $grandTotal += $total;
+                                            @endphp
+                                            <td>£&nbsp;{{ number_format($item['quantity'] * $item['price'], 2) }}</td>
+                                            @endforeach
+                                            <div>
+                                            </tr>
+                                        </table>
+                                                <h3>Grand Total: £&nbsp;{{number_format($grandTotal),2}} </h3>
+                                            </div>
                                 </div><!-- total container /-->
                                 <div class="cart-total-wrap">
-                            		<ul class="accordion" data-accordion>
+                            		{{-- <ul class="accordion" data-accordion>
                                       <li class="accordion-item" data-accordion-item>
                                         <a href="#" class="accordion-title">Have Coupon from seller?</a>
                                         <div class="accordion-content cart-accordion" data-tab-content>
@@ -163,18 +145,18 @@
                                             <input type="submit" class="button secondary" value="Apply!" />
                                         </div>
                                       </li>
-									</ul>
+									</ul> --}}
                             	</div>
 								<div>
-                                	<textarea class="cart-total-wrap" placeholder="Optional Note to this seller..."></textarea>
-                                	<input type="submit" class="button primary float-right" value="Buy From this Seller" />
+                                	{{-- <textarea class="cart-total-wrap" placeholder="Optional Note to this seller..."></textarea> --}}
+                                	<a href="{{route('checkout')}}" class="button primary float-right"  >Buy Now </a>
                                 </div> <!-- right /-->
                             </div><!-- Shop Cart Detail /-->
                             <div class="clearfix"></div>
                         </div> <!-- content section /-->
                     </div><!-- Featured Area -->
                     
-                    <div class="featured-area small-module">
+                    {{-- <div class="featured-area small-module">
                         <div class="section-title">
                             <h2 class="float-left">Seller: <a href="#">Galaxy Wardrobe</a></h2> <a href="#" class="float-left">Contact Seller</a>
                             <div class="clearfix"></div>
@@ -315,9 +297,9 @@
                             </div><!-- Shop Cart Detail /-->
                             <div class="clearfix"></div>
                         </div> <!-- content section /-->
-                    </div><!-- Featured Area -->    
+                    </div><!-- Featured Area -->     --}}
                 	
-                    <div class="row">
+                    {{-- <div class="row">
                     	<div class="medium-4 small-12 medium-offset-8 small-offset-0 columns">
                         	<div class="cart-total-wrap">
                             		<ul class="accordion" data-accordion>
@@ -346,7 +328,7 @@
                             </table>
                             <input type="submit" class="button primary float-right" value="Buy All" />
                         </div>
-                    </div><!-- grand total row ends /-->
+                    </div><!-- grand total row ends /--> --}}
                     
                 </div>
                <!-- sidebar Ends -->
@@ -355,7 +337,7 @@
         </div>
 	    <!-- Content Area Ends -->
 
-        <!-- Call to Action box -->
+        {{-- <!-- Call to Action box -->
         <div class="call-to-action">
            <div class="row">
                 <div class="medium-5 small-12 columns">
@@ -385,5 +367,5 @@
                 </div>
            </div><!-- row -->
          </div>
-        <!-- Call to Action End -->
+        <!-- Call to Action End --> --}}
 @endsection

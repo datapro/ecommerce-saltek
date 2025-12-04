@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <div class="float-left">
-                        	Store: <a href="#" class="store-name">Fajar Accessories</a> <span class="opened">Open: <strong>2 Years</strong></span> 
+                        	Store: <a href="#" class="store-name">Kafinix Ventures</a> <span class="opened">Open: <strong>2 Years</strong></span> 
                          </div>
                         <div class="pro-rating">
                             <i class="fa fa-star"></i>
@@ -19,7 +19,7 @@
                         	<span class="review-count store-name">248 Reviews</span>
                         </div> 
                         <div class="float-left">
-	                        <a href="#" class="bordered-light">Follow Store</a>
+	                        {{-- <a href="#" class="bordered-light">Follow Store</a> --}}
                         </div>    
                     </div> <!-- title /-->
                 </div><!-- row /-->
@@ -29,11 +29,11 @@
             <div class="row">
                 <div class="medium-9 small-12 columns">
                   <ul class="breadcrumbs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">All Categories</a></li>
-                        <li class="disabled">Sports & Entertainment</li>
+                        <li><a href="{{route('shop')}}">Home</a></li>
+                        <li><a href="{{route('listshop')}}">List Shop</a></li>
+                        {{-- <li class="disabled">Sports & Entertainment</li> --}}
                         <li>
-                          <span class="show-for-sr">Current: </span> Body Building
+                          {{-- <span class="show-for-sr">Current: </span> Body Building --}}
                         </li>
                   </ul>
                 </div><!-- breadcrumbs /-->
@@ -71,16 +71,23 @@
                 	
                     <div class="medium-5 small-12 columns item-image">
                     	<div class="main-image">
-                        	<img src="{{asset('assets/images/help/product7-1.jpg')}}" alt="" />
+                        	<img src="{{ asset('storage/' . $product->images->first()->image) }}" 
+                                            class="card-img-top" 
+                                            alt="{{ $product->productname }}"> 
                         </div>
                         <div class="thumbnails">
-                        	<a href="#">
-                            	<img src="{{asset('assets/images/help/product1-1.jpg')}}" alt="" />
-                            </a>
+                        	{{-- <a href="#">
+                            	<img src="{{ asset('storage/' . $product->images->last()->image) }}" 
+                                            class="card-img-top" 
+                                            alt="{{ $product->productname }}"> 
+                            </a> --}}
+                            @foreach ($product->images as $img)
                             <a href="#">
-                            	<img src="{{asset('assets/images/help/product2-1.jpg')}}" alt="" />
-                            </a>
-                            <a href="#">
+                                <img src="{{ asset('storage/' . $img->image) }}">
+                                    {{-- <img src="{{asset('assets/images/help/product2-1.jpg')}}" alt="" /> --}}
+                                </a>
+                                @endforeach
+                            {{-- <a href="#">
                             	<img src="{{asset('assets/images/help/product3-1.jpg')}}" alt="" />
                             </a>
                             <a href="#">
@@ -88,13 +95,13 @@
                             </a>
                             <a href="#">
                             	<img src="{{asset('assets/images/help/product5-1.jpg')}}" alt="" />
-                            </a>
+                            </a> --}}
                         </div>
                     </div><!-- Item Image /-->
                     
                     <div class="medium-7 small-12 columns item-detail">
                     	<div class="item-header">
-	                        <h1>2016 New High Elastic Yoga Tights For Women Yoga Latest</h1>
+	                        <h1>{{$product->productname}}</h1>
                             <div class="item-meta">
                             	<div class="pro-rating">
                             		<i class="fa fa-star"></i>
@@ -105,23 +112,24 @@
                         			<span class="review-count store-name">48 Reviews</span><span class="review-count no-border">90 Orders</span> 
                                     <div class="socialicons float-right">
                                         <a href="#" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
-                                        <a href="#" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
-                                        <a href="#" title="Share on Google plus"><i class="fa fa-google"></i></a>
+                                        <a href="https://x.com/kafinixventures" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
+                                        <a href="https://instagram.com/kafinixventures" title="Share on instagram plus"><i class="fa fa-instagram"></i></a>
                         			</div><!-- social icons /-->
                         		</div>
                             </div><!-- item meta /-->
                         </div><!-- item header /-->
                         
                         <div class="item-pricing">
-                        	<p><span class="row-title">SKU:</span><span>34323SM</span></p>
-                            <p><span class="row-title">Category:</span><span><a href="#">Pants</a>, <a href="#">Women</a></span></p>
-                            <p><span class="row-title">Price:</span><span class="sale-price">$99.53 / piece</span></p>
-                            <div><span class="row-title">Discount Price:</span><span><span class="regular-price">$99.53</span> / piece</span><span class="off-percent">35% off</span> <span class="bulk-price">
-                            	<a data-toggle="bulk-price" href="#">
+                        	<p><span class="row-title">SKU:</span><span>{{$product->sku}}</span></p>
+                            {{-- <p><span class="row-title">Category:</span><span><a href="#">Pants</a>, <a href="#">Women</a></span></p> --}}
+                            {{-- <p><span class="row-title">Price:</span><span class="sale-price">£{{$product->price}} / piece</span></p> --}}
+                            <div><span class="row-title">Price:</span><span><span class="regular-price">£{{$product->price}}</span> / piece</span>
+                                {{-- <span class="off-percent">35% off</span> <span class="bulk-price"> --}}
+                            	{{-- <a data-toggle="bulk-price" href="#">
                             		Bulk Price &raquo;
                              	</a>
-                            </span>
-                            	<div class="dropdown-pane top-left" id="bulk-price" data-dropdown data-hover="true" data-hover-pane="true">
+                            </span> --}}
+                            	{{-- <div class="dropdown-pane top-left" id="bulk-price" data-dropdown data-hover="true" data-hover-pane="true">
                             	<table class="text-center">
                                 	<tr>
                                     	<th>Qty</th>
@@ -141,36 +149,36 @@
                                     </tr>
                                 </table>	
                             	<p>Discount automatically counted on checkout.</p>
-                            </div>
+                            </div> --}}
                             </div>
                             
                         </div><!-- item head /-->
                         
                         <div class="item-options">
-                        	<div class="option-box"><span class="row-title">Colors:</span><span><a href="#" title="Red" class="color red">&nbsp;</a> <a href="#" title="Green" class="color green">&nbsp;</a> <a href="#" title="Orange" class="color ornage">&nbsp;</a> <a href="#" title="Blue" class="color blue">&nbsp;</a> <a href="#" title="Yellow" class="color yellow">&nbsp;</a></span>
+                        	<div class="option-box"><span class="row-title">Colors:</span><span>{{$product->color}}<a href="#" title="Red" class="color red">&nbsp;</a> <a href="#" title="Green" class="color green">&nbsp;</a> <a href="#" title="Orange" class="color ornage">&nbsp;</a> <a href="#" title="Blue" class="color blue">&nbsp;</a> <a href="#" title="Yellow" class="color yellow">&nbsp;</a></span>
                             <div class="clearfix"></div>
                             </div>
   							<div class="option-box">
-                            	<span class="row-title">Sizes:</span><span><a href="#" title="Mediume" class="color">M</a> <a href="#" title="Large" class="color">L</a> <a href="#" title="X Large" class="color">X</a> <a href="#" title="Small" class="color">S</a></span>
+                            	<span class="row-title">Sizes:</span><span>{{$product->size}}<a href="#" title="Mediume" class="color">M</a> <a href="#" title="Large" class="color">L</a> <a href="#" title="X Large" class="color">X</a> <a href="#" title="Small" class="color">S</a></span>
                                 <div class="clearfix"></div>
                                 </div>	
                         </div><!-- item options /-->
                         
                         <div class="item-quantity">
                         	<div><span class="row-title">Quantity:</span><span><input type="number" class="qty" value="1" /> piece(s)</span>	</div>
-                            <div><span class="row-title">Total Price:</span> <span>Select Color, size and quantity.</span></div>
+                            <div><span class="row-title">Total Price:</span> <span>Select Color, size and quantity.</span>£{{$product->price}}</div>
                         </div>
                         <!-- Item Quantity /-->
                         
                         <div class="shopping-buttons">
-                        	<a href="#" class="button secondary">Buy Now</a> <a href="#" class="button primary">Add to cart</a> <a href="#" class="wishlist"><i class="fa fa-heart"></i></a>
+                        	<a href="{{route('checkout')}}" class="button secondary">Buy Now</a> <a href="{{route('cart.add',$product->id)}}" class="button primary">Add to cart</a> <a href="#" class="wishlist"><i class="fa fa-heart"></i></a>
                             <div class="clearfix"></div>
                         </div>
                         <!-- shopping Buttons /-->
                         
-                        <div class="store-promotion">
+                        {{-- <div class="store-promotion">
                         	<div><span class="row-title">Store Promotion: </span> <span class="coupon-store"><strong>US $2</strong> off per <strong>US $5</strong></span></div>
-                        </div>
+                        </div> --}}
                         <!-- promotion Ends /-->
                         
                     </div><!-- item detail /-->
@@ -180,7 +188,7 @@
             <!-- single product detail /-->
             
             <!-- customer content -->
-            <div class="store-content">
+            {{-- <div class="store-content">
                 <div class="row">
                     
                     <!-- store sidebar -->
@@ -641,7 +649,7 @@
                     <!-- store content /-->
                     
                 </div><!-- Row /-->
-            </div>
+            </div> --}}
             <!-- customer content /-->
             
 		</div><!-- content container /-->

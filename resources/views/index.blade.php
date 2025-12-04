@@ -11,15 +11,18 @@
                     </div> <!-- title /-->
                 </div><!-- row /-->
             </div>
-            @include('includes.messages')
+            <div style="justify-content: center;display:flex;">
+
+                @include('includes.messages')
+            </div>
             <!-- Title Section End -->
         	
             <div class="row">
                 <div class="small-12 columns">
                   <ul class="breadcrumbs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li class="disabled">Gene Splicing</li>
+                        <li><a href="{{route('shop')}}">Home</a></li>
+                        <li><a href="{{route('listshop')}}">Features</a></li>
+                        {{-- <li class="disabled">Gene Splicing</li> --}}
                         <li>
                           <span class="show-for-sr">Current: </span> Cloning
                         </li>
@@ -172,7 +175,7 @@
                                 <div class="product medium-4 small-12 columns">
                                 <div class="product-image">
                                     <div class="sale-tag">Sale</div>
-                                       <a href="single-product.html">
+                                       <a href="{{route('singleproduct',$product->id)}}">
                                         {{-- {{-- <img src="{{asset('assets/images/help/product3-1.jpg')}}" alt="" /> --}}
                                         <img src="{{ asset('storage/' . $product->images->last()->image) }}" 
                                             class="card-img-top" 

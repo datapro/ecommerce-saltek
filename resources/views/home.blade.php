@@ -16,6 +16,7 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                @include('includes.messages')
             </div>
         </div>
     </div>

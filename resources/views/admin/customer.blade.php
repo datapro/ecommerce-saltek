@@ -121,12 +121,12 @@
                                     </a>
                                 </li>
 
-                                <li>
+                                {{-- <li>
                                     <a href="order-tracking.html">
                                         <i class="fa fa-circle"></i>
                                         <span>Order Tracking</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <li>

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Mail\ContactMail;
+use Mail;
 class ContactController extends Controller
 {
     /**
@@ -12,12 +13,28 @@ class ContactController extends Controller
     public function send()
     {
         //
-        return view('contact.send');
+        $cart = session()->get('cart', []);
+        return view('contact.send',compact('cart'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+    public function mail(Request $request)
+    {
+        $request->validate([
+            'name'    => 'required',
+            'email'   => 'required|email',
+            'message' => 'required|min:10'
+        ]);
+
+        // Send mail
+        Mail::to('test@test.com')->send(new ContactMail($request->all()));
+
+        return back()->with('success', 'Your message has been sent successfully!');
+    }
+
+
     public function create()
     {
         //

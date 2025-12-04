@@ -65,12 +65,12 @@
                             <li>
                                 <i class="fa fa-mobile"></i>
                                 <h4>Phone:</h4>
-                                <p>(00) 123 456 789</p>
+                                <p>(+44) 7585407097</p>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i>
                                 <h4>Email:</h4>
-                                <p><a href="https://www.webfulcreations.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e705f535b7e59535f5752105d5153">[email&#160;protected]</a></p>
+                                <p>helpdesk@Kafinixventures.co.uk</p>
                             </li>
 						</ul>
                         <hr>

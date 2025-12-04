@@ -16,14 +16,14 @@
             
             <div class="row">
                 <div class="small-12 columns">
-                  <ul class="breadcrumbs">
+                  {{-- <ul class="breadcrumbs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Features</a></li>
                         <li class="disabled">Gene Splicing</li>
                         <li>
                           <span class="show-for-sr">Current: </span> Cloning
                         </li>
-                  </ul>
+                  </ul> --}}
                 </div><!-- breadcrumbs /-->
 			</div><!-- Row ends /-->            
             
@@ -355,7 +355,7 @@
         </div> --}}
         <!-- Suggested Stores Ends /-->
         
-        <!-- Call to Action box -->
+        {{-- <!-- Call to Action box -->
         <div class="call-to-action">
            <div class="row">
                 <div class="medium-5 small-12 columns">
@@ -385,5 +385,5 @@
                 </div>
            </div><!-- row -->
          </div>
-        <!-- Call to Action End -->
+        <!-- Call to Action End --> --}}
 @endsection

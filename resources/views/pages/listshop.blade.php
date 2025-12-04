@@ -15,10 +15,10 @@
         	
             <div class="row">
                 <div class="small-12 columns">
-                  <ul class="breadcrumbs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li class="disabled">Gene Splicing</li>
+                   <ul class="breadcrumbs">
+                        <li><a href="{{route('shop')}}">Home</a></li>
+                        <li><a href="{{route('listshop')}}">Features</a></li>
+                        {{-- <li class="disabled">Gene Splicing</li> --}}
                         <li>
                           <span class="show-for-sr">Current: </span> Cloning
                         </li>
@@ -36,15 +36,13 @@
                         <div class="widget">
                             <h2>Related Categors</h2>
                             <div class="widget-content">
-                                <ul class="menu vertical">
                                       @foreach($categories as $category)
-                                        <li><a href="{{ route('index.shop', $category->id) }}" 
+                                        <a href="{{ route('index.shop', $category->id) }}" 
                                         class="btn btn-outline-primary {{ isset($selectedCategory) && $selectedCategory->id == $category->id ? 'active' : '' }}">
                                         {{ $category->name }}
-                                        </a></li>
+                                        </a>
                                     @endforeach
                                         
-                                </ul>
                             </div><!-- widget content /-->
                         </div><!-- widget /-->
                         
@@ -169,7 +167,7 @@
                         	<div class="product list-product small-12 columns">
                                     <div class="medium-4 small-12 columns product-image">
                                         <div class="sale-tag">Sale</div>
-                                        <a href="single-product.html">
+                                        <a href="#">
                                            <img src="{{ asset('storage/' . $product->images->first()->image) }}" 
                                             class="card-img-top" 
                                             alt="{{ $product->productname }}"> 
@@ -207,7 +205,7 @@
                                              
                                              <div class="cart-menu">
                                                 <ul class="menu">
-                                                	<li><a href="#" class="button primary" title="Add to cart">Add to Cart</a></li>
+                                                	<li><a href="{{route('cart.add',$product->id)}}" class="button primary" title="Add to cart">Add to Cart</a></li>
                                                     <li><a href="#" title="Add to wish list"><i class="fa fa-heart"></i></a></li>
                                                     <li><a href="#" title="Open Product Page"><i class="fa fa-retweet"></i></a></li>
                                                     <li><a href="#" title="Quick View"><i class="fa fa-search-plus"></i></a></li>

@@ -223,40 +223,13 @@
             
             <div class="medium-5 small-12 columns search-wrap">
             	<div class="main-search-form">
-                	<input type="text" placeholder="What you are shopping for ..." />
-                    <select>
-                    	<option value="0">All Categories</option>
-                        <option value="1">Women's Clothing &amp; Accessories</option>
-                        <option value="2">Men's Clothing &amp; Accessories</option>
-                        <option value="0">Phones &amp; Telecommunications</option>
-                        <option value="0">Computer &amp; Office</option>
-                        <option value="0">Consumer Electronics</option>
-                        <option value="0">Jewelry &amp; Accessories</option>
-                        <option value="0">Home &amp; Garden</option>
-                        <option value="0">Luggage &amp; Bags</option>
-                        <option value="0">Shoes</option>
-                        <option value="0">Mother &amp; Kids</option>
-                        <option value="0">Sports &amp; Entertainment</option>
-                        <option value="0">Health &amp; Beauty</option>
-                        <option value="0">Watches</option>
-                        <option value="0">Toys &amp; Hobbies</option>
-                        <option value="0">Weddings &amp; Events</option>
-                        <option value="0">Novelty &amp; Special Use</option>
-                        <option value="0">Automobiles &amp; Motorcycles</option>
-                        <option value="0">Lights &amp; Lighting</option>
-                        <option value="0">Furniture</option>
-                        <option value="0">Industry &amp; Business</option>
-                        <option value="0">Electronic Components &amp; Supplies</option>
-                        <option value="0">Office &amp; School Supplies</option>
-                        <option value="0">Electrical Equipment &amp; Supplies</option>
-                        <option value="0">Gifts &amp; Crafts</option>
-                        <option value="0">Home Improvement</option>
-                        <option value="0">Food</option>
-                        <option value="0">Travel and Coupons</option>
-                        <option value="0">Security &amp; Protection</option>
-                        <option value="0">In All Categories</option>
-                    </select>
-                    <button type="submit" class="primary button"><i class="fa fa-search"></i></button>
+
+                    <form action="{{ route('index.shoptop') }}" method="GET">
+                        <input type="text" name="category" placeholder="Search by Category Name">
+                     <button type="submit" class="primary button">
+                        <i class="fa fa-search"></i>
+                     </button>
+                    </form>
                 </div><!-- main search form /-->
             </div><!-- Second Column /-->
             
@@ -269,35 +242,52 @@
 	                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
     					</div>
                         <div class="float-left cart-link">
-                        	<a href="#">2 Item(s)</a>
+                            @foreach ($cart as $item)
+                        	<a href="#">{{$item['quantity']}}</a>
+                            @endforeach
                         </div>
                         <div class="clearfix"></div>                     
                     </div><!-- ends title /-->
                     
                     <!-- Hidden Menus -->
                     <div class="dropdown-pane" id="my-cart" data-dropdown data-hover="true" data-hover-pane="true">
-                      						  <h5>Your Cart Detail</h5>
-                      <table>
-                      	<tbody><tr>
-                        	<td><img alt="" src="{{asset('assets/images/help/product4.jpg')}}" /></td>
-                            <td>Beautiful Rhinestone Pearl <br>
-                            	2x $ 140
+                        <h5>Your Cart Detail</h5>
+                        <table>
+                            <tbody>
+                                    @foreach($cart as $productId => $item)
+                                <tr>
+                        	<td>  <a href="{{route('cart.remove',$productId)}}" class="remove" title="Remove this item"><span class="fa fa-close"></span></a></td>
+                        	<td>@if ($item['image'])
+                                    <img src="{{ asset('storage/' . $item['image']) }}" 
+                                        width="120" 
+                                        height="120"
+                                        style="object-fit: cover;"
+                                        alt="">
+                                @else
+                                    <p>no image</p>
+                                @endif
                             </td>
-                            <td>280</td>
+                            <td>{{$item['name'] }}<br>
+                                Price:£{{$item['price']}}
+                            	Quantity: {{$item['quantity']}}
+                            </td>
+                            {{-- <td>
+                            Total Price:  £{{ number_format($item['quantity'] * $item['price'], 2) }}
+                            </td> --}}
                         </tr>
                         <tr>
-                        	<td><img alt="" src="{{asset('assets/images/help/product4.jpg')}}" /></td>
-                            <td>Beautiful Rhinestone Pearl <br>
-                            	2x $ 140
+                            {{-- <td><img alt="" src="{{asset('assets/images/help/product4.jpg')}}" /></td> --}}
+                            <td><br>
+                                <div class="text-center"><strong>Subtotal: £{{ number_format($item['quantity'] * $item['price'], 2) }} </strong></div>
                             </td>
-                            <td>400</td>
+                            {{-- <td>400</td> --}}
                         </tr>
+                        @endforeach
                       </tbody></table>
                       <hr>
-                      <div class="text-center"><strong>Subtotal: $ 240 </strong></div>
                       <hr>	
-                      <a href="cart.html" class="button primary float-left">View Cart</a>
-                      <a href="checkout.html" class="button success float-right">Checkout</a>
+                      <a href="{{route('cart')}}" class="button primary float-left">View Cart</a>
+                      <a href="{{route('checkout')}}" class="button success float-right">Checkout</a>
 					<div class="clearfix"></div>
                     </div>
                     <!-- Hidden Menus /-->
@@ -312,7 +302,7 @@
     					</div>
                         <div class="links float-left">
                         	<a href="{{route('login')}}" class="sign-in special-margin">Sign in</a> <a href="{{route('register')}}" class="special-margin">Join</a>
-                        	<a href="#">Welcome Back Ateeq</a>
+                        	<a href="#">Welcome to Kafinix Ventures</a>
                         </div>
                         <div class="clearfix"></div>                     
                     </div><!-- ends title /-->

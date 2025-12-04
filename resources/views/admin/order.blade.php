@@ -54,6 +54,7 @@
 
             <!-- Page Sidebar Start-->
             <h1>Orders</h1>
+            <div style="display: flex;justify-content:center;">@include('includes.messages')</div>
             <div class="page-sidebar">
                 <div class="main-header-left d-none d-lg-block">
                     <div class="logo-wrapper">
@@ -122,12 +123,12 @@
                                     </a>
                                 </li>
 
-                                <li>
+                                {{-- <li>
                                     <a href="order-tracking.html">
                                         <i class="fa fa-circle"></i>
                                         <span>Order Tracking</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <li>
@@ -235,33 +236,54 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">SKU</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Weight</th>
-                    <th scope="col">Manufacturer</th>
-                    <th scope="col">Tax Class</th>
-                    <th scope="col">Categry</th>
-                    <th scope="col">Color</th>
-                    </tr>
+                    <th>Order ID</th>
+                    {{-- <th>Image</th> --}}
+                    <th>Product Name</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Customer Name</th>
+                    <th>Status</th>
+                    <th>Contact</th>
+                    <th>Date</th>
+                </tr>
                 </thead>
                 <tbody>
+                    @php $grandTotal = 0; @endphp
+                   @foreach($items as $item)
                     <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><button class="btn btn-danger">Delete</button></td>
-                    <td><button class="btn btn-success">Edit</button></td>
+                        <td>{{ $item->order_id }}</td>
+
+                        {{-- <td>
+                            @if($item->image)
+                                <img src="{{ asset('storage/'.$item->image) }}" width="60" height="60" style="object-fit: cover;">
+                            @else
+                                No Image
+                            @endif
+                        </td> --}}
+
+                        <td>{{ $item->name }}</td>
+
+                        <td>{{ $item->quantity }}</td>
+
+                        <td>£{{ number_format($item->price, 2) }}</td>
+
+                        <td>£{{ number_format($item->subtotal, 2) }}</td>
+
+                        <td>{{ $item->order->customer_name ?? '—' }}</td>
+                        <td>{{ $item->order->status ?? 'No Status' }}</td>
+                        <td>{{ $item->order->customer_phone ?? 'No Status' }}</td>
+                        <td>{{ $item->order->created_at}}</td>
+                        <td>{{-- Only show delete button ONCE per order --}}
+                        @if ($loop->last || $items[$loop->index + 1]->order_id != $item->order_id)
+                            <form action="{{ route('order.delete', $item->order_id) }}" method="POST" onsubmit="return confirm('Delete this order?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        @endif</td>
                     </tr>
+                    @endforeach
                 </tbody>
                 </table>
 

@@ -4,7 +4,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">

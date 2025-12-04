@@ -121,12 +121,12 @@
                                     </a>
                                 </li>
 
-                                <li>
+                                {{-- <li>
                                     <a href="order-tracking.html">
                                         <i class="fa fa-circle"></i>
                                         <span>Order Tracking</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <li>
@@ -207,7 +207,7 @@
                                         </div>
                                         <div class="media-body media-doller">
                                             <span class="m-0">Products</span>
-                                            <h3 class="mb-0">$ <span class="counter">6659</span><small> This
+                                            <h3 class="mb-0">£ <span class="counter">6659</span><small> This
                                                     Month</small>
                                             </h3>
                                         </div>
@@ -226,7 +226,7 @@
                                         </div>
                                         <div class="media-body media-doller">
                                             <span class="m-0">All products in stock</span>
-                                            <h3 class="mb-0">$ <span class="counter">9856</span><small> 
+                                            <h3 class="mb-0">£ <span class="counter">9856</span><small> 
                                                 All products</small>
                                             </h3>
                                         </div>
@@ -243,7 +243,7 @@
                                                     class="font-primary"></i></div>
                                         </div>
                                         <div class="media-body media-doller"><span class="m-0">Orders</span>
-                                            <h3 class="mb-0">$ <span class="counter">893</span><small> This
+                                            <h3 class="mb-0">£ <span class="counter">893</span><small> This
                                                     Month</small></h3>
                                         </div>
                                     </div>
@@ -259,7 +259,7 @@
                                                     class="font-danger"></i></div>
                                         </div>
                                         <div class="media-body media-doller"><span class="m-0">All Orders</span>
-                                            <h3 class="mb-0">$ <span class="counter">5631</span><small> Combined</small></h3>
+                                            <h3 class="mb-0">£ <span class="counter">5631</span><small> Combined</small></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -274,7 +274,7 @@
                                                     class="font-danger"></i></div>
                                         </div>
                                         <div class="media-body media-doller"><span class="m-0">All Customers</span>
-                                            <h3 class="mb-0">$ <span class="counter">5631</span><small> Combined</small></h3>
+                                            <h3 class="mb-0">£ <span class="counter">5631</span><small> Combined</small></h3>
                                         </div>
                                     </div>
                                 </div>
